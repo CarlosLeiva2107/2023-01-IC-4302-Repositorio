@@ -5,9 +5,7 @@
 
 # Bases de Datos II GR 1
 
-# Asigancion
-
-# Titulo
+# Prueba Corta #1
 
 # Estudiante: 
 # Carlos Eduardo Leiva Medaglia / 2021032973
@@ -16,7 +14,6 @@
 # Gerardo Nereo Campos Araya
 
 # I Semestre 2023
-[//]: # (Dejo esto para que el siguiente texto inicie en una nueva pagina)
 # 
 # 
 # 
@@ -38,55 +35,36 @@
 # 
 # 
 # 
-# 
-[//]: # (Resumen pequeño sobre que es elastic search)
-# Elastic Search  
+#  
+#  
+#  
+#  
+[//]: # (Resolucion Quiz)
 
-Elasticsearch es un motor de búsqueda y de análisis el cual nos puede proporcionar estas herramientas casi en tiempo real para cualquier tipo de dato. De igual manera, Elasticsearch nos ofrece velocidad para el manejo de datos en distintos casos de uso, algunos ejemplos pueden ser:
+1.	Explique cómo afectan los siguientes componentes el rendimiento de un sistema de base de datos:  
+    a. Disco  
+    b. Memoria Virtual  
+    c. Memoria  
+    d. Caché de CPU  
+    e. CPU  
 
-* Automatiza flujos de trabajo usando Elasticsearch como un motor de almacenamiento
-* Usa aprendizaje automático para modelar el comportamiento de datos.
-* Analiza y procesa datos genéticos
-* Almacena y analiza datos de eventos de seguridad.  
+a) El disco es la unidad física de almacenamiento del computador, por lo que este tiene guardado absolutamente todos los datos relacionados con la base de datos. También, el disco puede ser encargado de realizar operaciones de lectura y escritura, por lo que un disco de mayor velocidad mejoraría estas operaciones. Sin embargo, el disco también puede tomarse tiempo en realizar estas operaciones, lo que traería consecuencias a la efectividad de nuestra base de datos.  
 
-Como se puede ver Elasticsearch puede ser utilizado para gran variedad de usos y también es una gran herramienta para utilizar en la solución de nuestros problemas.
+b)	Como lo dice el nombre, la memoria virtual no es como tal una unidad que se encuentre físicamente en el computador, básicamente es un espacio el cual simula la memoria principal. Al simular la memoria puede mejorar el rendimiento de la base de datos al poder tener mas datos en esta memoria y no tener que realizar todo el proceso de ir y leerlos del disco, simplemente busca en la memoria virtual. Cuando la base esta consumiendo mas memoria principal de la disponible, se va a agarrar de la memoria virtual para compensar la falta de la principal. La memoria virtual es mas lenta que la memoria principal, por lo que también podría generar problemas en los tiempos que se manejan en la base.  
 
-[//]: # (Resumen de la primera seccion del documento)
+c)	La memoria principal se dice que es el segundo componente más importante, después del CPU. La memoria puede mejorarnos el rendimiento de nuestra base de datos bastante ya que, si se garantiza que los índices de la base puedan estar completos en nuestra memoria principal, traería una reducción del uso del disco, esto generara que toda la información este en memoria principal, por lo que seria mucho mas rápido. Entre mas memoria principal poseamos más efectividad tendremos.  
 
-## Documentos e Indices
-Elasticsearch almacena documentos como estructura de datos que han sido serializadas en documentos JSON. Cuando un documento esta almacenado se puede realizar la búsqueda de este en tiempo real.  
-Un índice es una colección optimizada de documentos, y su vez, estos documentos son una colección de campos, estos campos son pares "clave-valor" donde contiene los datos. Cada campo indexado va a tener su propia estructura de datos optimizada, por ejemplo, los campos de texto se almacenan en índices invertidos, esto lo que hace es enumerar cada palabra única que aparece en un documento y luego reconoce todos los documentos donde aparece la palabra. Es importante recordar que un documento puede tener distintos campos, los cuales pueden ser manejados de distintas maneras, como lo fue mencionado con los campos de texto.  
-Sin embargo, Elasticsearch nos da la posibilidad de poder indexar sin especificar como se va a manejar cada campo que puede aparecer en un documento. La manera en que funciona esto es con el mapeo dinámico, lo que pasara es que se agregaran automáticamente nuevos campos al índice, esto permite comenzar a indexar documentos y a su vez detectara y asignar valores a los tipos de datos correspondientes, gracias a esto podremos indexar y explorar datos.
-Es importante mencionar, que se pueden definir reglas propias para el mapeo dinámico. Esto puede traernos ventajas, una por ejemplo seria, usar formatos de fecha personalizados.  
-Por último, a veces, es conveniente indexar el mismo campo de diferentes maneras, realizando esto se nos amplia la manera en la que podríamos obtener resultados de la indexación de un campo especifico.
+d)	El cache es una memoria temporal que puede almacenar datos los cuales son usados repetitivamente. Esto ayuda de manera que, si la base utiliza unos datos de manera muy repetitiva, podrían ser guardados en cache, lo que nos facilitara el acceso a la hora de volverlos a necesitar ya que no tendrá que ir a buscar de disco, lo que aumentara la velocidad de acceso a datos. La cache también le quitaría carga al disco ya que no tendría que estar realizando operaciones de lectura ni escritura.  
 
-[//]: # (Resumen de la segunda seccion del documento)
+e)	La CPU es el componente más importante ya que este es el encargado de gobernar todo lo relacionado con el computador. Dependiendo de como manejemos nuestra base de datos puede que el CPU este más presente o menos presente. El CPU se va a encargar de realizar todas las operaciones relacionadas a nuestra base, por lo que un CPU mas potente va a traer mayor efectividad. El CPU al ser la cabeza del computador, en caso de no realizar los procesos correctamente, puede perjudicar también a los demás componentes del computador.  
 
-## Busqueda y Analisis
-### Busqueda
-Elasticsearch tiene un gran poder en lo que son sus capacidades de búsqueda, estas están construidas en la librería de Apache Lucene, gracias a esto se puede realizar búsquedas y análisis de datos muy sorprendente.
-Para la búsqueda de datos admite distintos tipos de consulta que podemos realizar dependiendo en base a que necesitemos realizar la búsqueda.
-Entre estos tipos de consulta se encuentra la consulta estructurada, que es un tipo de consulta al estilo SQL, ya que nos permite buscar por campos específicos. Otro tipo es la consulta de texto completo, la cual encuentra documentos que contengan coincidencias de una palabra o una frase especifica.
-### Análisis
-Elasticsearch utiliza las agregaciones, las cuales nos permiten realizar análisis de nuestros datos de una manera muy completa. Las agregaciones son igual de veloces que las búsquedas, por lo que podemos analizar nuestros datos en tiempo real, esto nos permite que conforme se actualizan nuestros datos, los análisis de estos también irán cambiando.
+2.	¿De qué forma se benefician las aplicaciones del uso de caches? Explique.  
 
-> **Importante mencionar que tanto las búsquedas y las agregaciones pueden trabajar juntas, lo que permite, realizar búsquedas, y a su vez, hacer análisis de los resultados de estas.**
+Como lo mencione anteriormente la cache es una memoria temporal que puede guardar datos repetitivos. Por lo que en palabras sencillas, a la hora de que las aplicaciones necesiten acceder a datos, estos pueden ser accedidos de manera más rápida por medio de la cache a diferencia de realizar todo el proceso de búsqueda de los datos en el disco. El uso de la cache va a traer una mejora en el rendimiento, ya que como lo mencione antes, los datos no necesitaran ser buscados en todo el disco ya que estarán en la cache, esto también traerá una mejora en el consumo de la energía. Como se puede ver, en lo que mas se pueden beneficiar las aplicaciones es que van a mejorar sus tiempos de ejecución porque cuando se necesite acceder datos que están en cache lo hará de manera mucho mas rápida, lo que mejorara la experiencia para el usuario también.  
 
-[//]: # (Resumen de la segunda seccion del documento)
+3.	Desde el punto de vista de Elasticsearch, ¿Que es un índice?  
 
-## Clusters, Nodos y Shards
+Un índice en Elasticsearch es una colección optimizada de documentos. Cada uno de estos documentos tendrá su propio identificador único, de tal manera que nos permite realizar búsquedas específicas. Elasticsearch también da la posibilidad de configurar la forma en que se pueden buscar estos documentos, a lo que me refiero con esto, es que se puede agregar maneras en las que nos permite realizar la búsqueda de manera mas especificas de acuerdo a lo que nosotros hayamos asignado. Básicamente los índices son estructuras las cuales nos van a permitir manipular de una mejor manera nuestros datos en Elasticsearch.  
+4.	¿Qué es un mapping en Elasticsearch?  
 
-Elasticsearch puede agregar nodos a los clústeres, automáticamente se distribuyen los datos y consultas en los nodos disponibles. Elasticsearch puede equilibrar automáticamente los clústeres para que funcionen de acuerdo a la cantidad de nodos que haya.
-Elasticsearch cuenta con lo que son shards, y estos shards son índices. Cuando un documento se distribuye en un índice a través de un shard, y a su vez, este shard se distribuye en varios nodos, esto nos garantiza una protección contra fallas de hardware y aumentara la capacidad de consultas.
-Existen dos tipos de shards: primarios y replicas. Un shard primario es cada documento en un índice, mientras que las réplicas, son copias de un shard primario. El número de shards primarios se fija al crear un índice, al contario de las réplicas las cuales su cantidad puede ser cambiada en el momento que se guste.
-Existen algunas limitaciones que hay que tener en cuenta en cuanto al tamaño del shard. Cuando el tamaño es muy grande puede que se necesite más tiempo en caso de requilibrar un clúster. En caso de ser muy pequeño puede hacer el procesamiento más rápido, pero traería más consultas, por lo tanto, más sobrecarga. Se recomienda un rango entre 20GB y 40GB, sin embargo, se recomienda realizar prueba y error, y ver que funciona mejor en cada caso.
-Existe un término llamado replicación entre clústeres, y como su nombre lo dice, es clonar varios clústeres, teniendo un clúster como principal. De esta manera en caso de que el clúster principal deje de funcionar, tendríamos un secundario que lo pueda respaldar.
-Es importante mencionar que ElasticSearch permite utilizar Kibana como centro de control para administrar clústeres.
-
-
-
-
-
-
-
-
+El mapping básicamente nos permite describir la manera en la que los documentos de un índice deberán ser indexados. Elasticsearch nos otorga la posibilidad de definir  esto de manera automática o si se desea, se puede especificar como pueden ser analizados los campos, a lo que me refiero con esto, es que si se tiene un campo de tipo texto, se puede especificar de que manera quiere que sea analizado, esto nos ayudaría por ejemplo si trabajamos con formatos de fecha personalizados. El mapping va a ser muy importante ya que nos va a impactar en la forma en la que realizamos la búsqueda de nuestros datos y los resultados que obtendremos.  
