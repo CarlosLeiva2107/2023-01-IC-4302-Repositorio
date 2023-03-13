@@ -46,7 +46,7 @@
 
 Para agregar otra base de datos, se debe copiar y pegar uno de los ejemplos de las bases de datos que se encuentran en el chart.yaml y simplemente remplazar los datos con los valores correspondientes para la base deseada. En este caso para MariaDB nada más se cambia la versión, se coloca el nombre y se le asigna el estado como enabled.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 #### ¿Cómo agregar la función de monitoreo?
 Elasticsearch empaquetado por bitnami no viene con la función de monitoreo activada, por lo que uno mismo va a tener que configurarlo. En values.yaml se crea una nueva categoría, en este caso para Elasticsearch, donde se agrega “Metrics” y el “Servicemonitor” estos dos por defecto están en false, por lo que se tienen que cambiar a true. Para cualquier paquete de bitnami este sería el proceso para activar la función de monitoreo.  
@@ -71,11 +71,11 @@ Si el nodo máster se queda sin recursos, puede afectar el rendimiento de todo e
 
 En Elasticsearch, se puede tener un nodo data que contenga un índice y dentro de ese índice tener uno o varios shards. El problema con tener un solo nodo data es que se convierte en un punto de falla único y se convierte en un cuello de botella. Si se agregan dos nodos, se puede tener un shard primario y un shard secundario, lo que aumenta el rendimiento ya que los usuarios pueden realizar operaciones de búsqueda en dos servidores diferentes. Esto mejora la capacidad de lectura del sistema, pero la capacidad de escritura sigue siendo la misma, ya que solo el shard primario puede escribir.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Si el shard primario comienza a crecer, los recursos físicos pueden convertirse en un problema, ya que se necesitará más memoria, etc. Por lo tanto, si se tienen dos nodos, se crearán dos shards por nodo, dos primarios y dos secundarios, lo que implica que los datos se dividirán en dos porciones de igual tamaño. Por ejemplo, si tenemos 100 GB de datos, se dividirán en 50 GB cada uno. El problema es que ambos shards primarios se encuentran en el mismo servidor, lo que genera dos puntos de falla. Eso no quiere decir que si el servidor donde se encuentran los shards primarios falla, el otro no se hará cargo. Es decir, existe un failover, como ambos shards primarios están en el mismo servidor, el tiempo en recuperar dos shards no es lo mismo que recuperar uno solo.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Por lo tanto, lo ideal es tener shards primarios en diferentes nodos o servidores para mejorar la disponibilidad y la tolerancia a fallos del sistema. Las ventajas de tener shard primarios y secundarios distribuidos entre dos nodos son varias:  
 
@@ -83,29 +83,29 @@ Por lo tanto, lo ideal es tener shards primarios en diferentes nodos o servidore
 -	Al tener dos shard secundarios en nodos diferentes, se divide el 50% de las lecturas, lo que permite pedir datos a cualquiera de los nodos disponibles. 
 -	Las búsquedas se pueden realizar en paralelo en ambos shards secundarios, lo que aumenta el rendimiento al trabajar en dos servidores simultáneamente.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Cuando se hacen muchas particiones, si se realiza una búsqueda, el sistema utiliza muchos recursos y necesita mucha coordinación, por lo tanto, en lugar de tener dos shards, podríamos tener tres shards, cada uno con alrededor de 35GB de las 100GB que se tienen en datos. Esto divide el trabajo que cada shard debe realizar, por lo que las operaciones deberían mejorar.  
 Cuando se realiza una búsqueda, esta se reparte entre todos los nodos que tienen réplicas secundarias. No solo las secundarias se encargan de esto, ya que los nodos máster están preguntando constantemente qué nodos tienen réplicas, y los nodos les van dando feedback, en caso de que el uso de memoria este muy alto, podría llegar a realizarse la búsqueda en un shard primario.  
 De igual manera no se gana nada con la partición de datos porque se redujo el trabajo que tenía un solo nodo. Si se hubieran usado las tres particiones en un solo nodo, este tendría menos trabajo, pero otro nodo agarraría más trabajo, lo que haría que el tiempo de ejecución aumente. A través de la observabilidad, nos damos cuenta de esto.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Si se agrega un nuevo nodo y se crea un nuevo índice, se puede hacer una distribución adecuada de los shards que estaban anteriormente en los otros dos nodos, lo que aumentaría considerablemente la capacidad del sistema tanto para escritura como para lectura en todos los nodos.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Si se guía bajo la idea de divide y vencerás y se llegara a agregar otro servidor y no se agregan shards, los nodos maestros de Elasticsearch deberán redistribuir los shards (shard relocation). Al hacer esto, se organizarán los datos de una manera más inteligente. Pero al hacerlo, se podría llegar a tener el mismo problema, ya que los shards primarios podrían estar en tres servidores y este servidor extra no aporta ninguna ventaja. Además, podría recargar el trabajo de las búsquedas en un solo nodo.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Otro caso, dos data nodes, un índice, dos shards, uno primario y secundario. Si el sistema tiene low writes y high searches. Al escribir poco, tener dos shards primarios está bien, pero el tiempo de respuesta está cayendo porque los nodos no son suficientes para manejar toda la cantidad de búsquedas que están pidiendo.  
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Se agregan replicas y como los shards son pequeños, se agregan replicas en los nodos. Esto no va a funcionar porque estaríamos utilizando el mismo hardware para hacer ese trabajo, tendría sentido si se agregan un par de servidores más, donde cada servidor tendría shards secundarios, replicando la información. Esto generaría que el trabajo se divida en varios servidores, por lo que, si una solicitud de información llega, la información de un usuario puede ser buscada desde cualquier servidor.    
 
-[//]: # (Imagen)
+[//]: # (![gato durmiendo](https://i.imgur.com/weUk334.jpeg)
 
 Esto logra aumentar el rendimiento, pero se están desperdiciando recursos, por el simple hecho de que los datos son muy pequeños y se dejan dos servidores sin utilización. Entonces, se utilizan tres replicas, lo que hará que cada uno de los servidores mejore el rendimiento porque cada uno manejará un 25% de los datos. No se busca partición de datos en shard primarios, pero sí replicación de datos, ya que hay pocos writes, muchos search. No se garantiza la consistencia entre los queries iguales que realicen los clientes. La escritura de los shard primarios debe distribuirse entre todos los nodos, por lo que hay un tiempo en el que no esté actualizado los datos. Por lo que un shard puede estar actualizado y otro puede que no, lo que puede generar resultados inconsistentes.  
 
