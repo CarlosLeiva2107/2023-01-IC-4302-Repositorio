@@ -47,7 +47,6 @@
 Para agregar otra base de datos, se debe copiar y pegar uno de los ejemplos de las bases de datos que se encuentran en el chart.yaml y simplemente remplazar los datos con los valores correspondientes para la base deseada. En este caso para MariaDB nada más se cambia la versión, se coloca el nombre y se le asigna el estado como enabled.  
 
 ![Apuntes](https://i.imgur.com/8aFkD0g.png)  
-![Apuntes](https://i.imgur.com/1idsOvd.png)  
 
 #### ¿Cómo agregar la función de monitoreo?
 Elasticsearch empaquetado por bitnami no viene con la función de monitoreo activada, por lo que uno mismo va a tener que configurarlo. En values.yaml se crea una nueva categoría, en este caso para Elasticsearch, donde se agrega “Metrics” y el “Servicemonitor” estos dos por defecto están en false, por lo que se tienen que cambiar a true. Para cualquier paquete de bitnami este sería el proceso para activar la función de monitoreo.  
