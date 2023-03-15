@@ -5,7 +5,7 @@
 
 # Bases de Datos II GR 1
 
-# Prueba Corta #1
+# Prueba Corta #2
 
 # Estudiante: 
 # Carlos Eduardo Leiva Medaglia / 2021032973
