@@ -30,15 +30,7 @@
 # 
 # 
 # 
-# 
-# 
-# 
-# 
-# 
-#  
-#  
-#  
-#  
+#   
 [//]: # (Resolucion Examen)
 
 # Pregunta 1
@@ -67,7 +59,7 @@ Para garantizar consistencia en las búsquedas esta la ventaja de que se impleme
 
 6. ¿Cómo el uso de caches y localidad podría mejorar el rendimiento del sistema? (5 pts)  
 
-Principalmente el uso de caches ayudaría a mejorar el rendimiento del sistema, ya que en este podría estar almacenada información sobre consultas frecuentes, las cuales cuando estas sean ejecutadas se podrá acceder mucho mas rápido a la información ya que se encuentra en el cache, lo que nos proporcionaría mejores tiempos de respuesta.  
+Principalmente el uso de caches ayudaría a mejorar el rendimiento del sistema, ya que en este podría estar almacenada información sobre consultas frecuentes, las cuales cuando estas sean ejecutadas se podrá acceder mucho mas rápido a la información ya que se encuentra en el cache, lo que nos proporcionaría mejores tiempos de respuesta. La localidad nos permitiría que los datos que se relacionan entre si sean mas fáciles de ser accedidos, por lo que si un usuario realiza una búsqueda, el resultado tendrá cerca también todo lo demás con lo que se relaciona.
 
 # Pregunta 2  
 
@@ -121,11 +113,10 @@ La verdad solo he tenido la oportunidad de probar un servicio on-premise el cual
 
 # Referencias  
 
-https://itelligent.es/es/ventajas-elasticsearch/  
+Avi. (2022, octubre 29). 7 Potente base de datos de series temporales para una solución de monitoreo. Geekflare. https://geekflare.com/es/time-series-database/  
 
-https://geekflare.com/es/time-series-data/  
+Datadog. (s.f.). Alerting. Datadog Infrastructure and Application Monitoring. https://docs.datadoghq.com/monitors/
 
-https://geekflare.com/es/time-series-database/  
+Kanade, V. (2022, noviembre 17). Una guía introductoria a los datos de series temporales. Geekflare. https://geekflare.com/es/time-series-data/
 
-https://docs.datadoghq.com/monitors/
-
+Itelligent. (2018, octubre 3). Usar Elasticsearch, ¿qué ventajas ofrece esta tecnología? ITELLIGENT. https://itelligent.es/es/ventajas-elasticsearch/
